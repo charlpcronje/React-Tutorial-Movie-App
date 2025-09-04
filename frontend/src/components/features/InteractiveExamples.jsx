@@ -419,26 +419,26 @@ function InteractiveExamples() {
       
       {/* Header with Keyboard Shortcuts */}
       <header className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Interactive React Examples
         </h1>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
           Explore real-world interaction patterns and see how React handles complex user interactions
         </p>
         
         {/* Keyboard Shortcuts Guide */}
-        <div className="inline-flex items-center space-x-4 text-xs text-gray-500 bg-gray-50 px-4 py-2 rounded-full">
-          <span><kbd className="bg-gray-200 px-2 py-1 rounded">Cmd+K</kbd> Quick search</span>
-          <span><kbd className="bg-gray-200 px-2 py-1 rounded">Cmd+N</kbd> New movie</span>
-          <span><kbd className="bg-gray-200 px-2 py-1 rounded">Cmd+R</kbd> Reset</span>
-          <span><kbd className="bg-gray-200 px-2 py-1 rounded">Esc</kbd> Clear</span>
+        <div className="inline-flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+          <span><kbd className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">Cmd+K</kbd> Quick search</span>
+          <span><kbd className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">Cmd+N</kbd> New movie</span>
+          <span><kbd className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">Cmd+R</kbd> Reset</span>
+          <span><kbd className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded">Esc</kbd> Clear</span>
         </div>
       </header>
       
       {/* Search and Filter Section */}
       <section className="card">
-        <h2 className="text-xl font-semibold mb-4">1. Real-Time Search & Filtering</h2>
-        <p className="text-gray-600 mb-6">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">1. Real-Time Search & Filtering</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
           Type in the search box and watch the results update instantly. 
           Change filters and see immediate feedback. This demonstrates reactive UI patterns.
         </p>
@@ -447,7 +447,7 @@ function InteractiveExamples() {
         <div className="grid md:grid-cols-4 gap-4 mb-6">
           {/* Search Input */}
           <div className="md:col-span-2">
-            <label htmlFor="movie-search" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="movie-search" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               🔍 Search Movies
             </label>
             <input
@@ -462,7 +462,7 @@ function InteractiveExamples() {
           
           {/* Genre Filter */}
           <div>
-            <label htmlFor="genre-filter" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="genre-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               🎭 Genre Filter
             </label>
             <select
@@ -479,7 +479,7 @@ function InteractiveExamples() {
           
           {/* Sort Options */}
           <div>
-            <label htmlFor="sort-order" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="sort-order" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               📊 Sort By
             </label>
             <div className="flex space-x-1">
@@ -508,23 +508,23 @@ function InteractiveExamples() {
         </div>
         
         {/* Search Statistics */}
-        <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 p-4 rounded-lg mb-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
             <div>
               <div className="text-lg font-bold text-blue-600">{searchStats.filteredMovies}</div>
-              <div className="text-xs text-blue-800">Showing</div>
+              <div className="text-xs text-blue-800 dark:text-blue-200">Showing</div>
             </div>
             <div>
               <div className="text-lg font-bold text-blue-600">{searchStats.totalMovies}</div>
-              <div className="text-xs text-blue-800">Total</div>
+              <div className="text-xs text-blue-800 dark:text-blue-200">Total</div>
             </div>
             <div>
               <div className="text-lg font-bold text-blue-600">{searchStats.hiddenMovies}</div>
-              <div className="text-xs text-blue-800">Hidden</div>
+              <div className="text-xs text-blue-800 dark:text-blue-200">Hidden</div>
             </div>
             <div>
               <div className="text-lg font-bold text-blue-600">{searchStats.averageRating}</div>
-              <div className="text-xs text-blue-800">Avg Rating</div>
+              <div className="text-xs text-blue-800 dark:text-blue-200">Avg Rating</div>
             </div>
             <div>
               <Button size="small" variant="ghost" onClick={clearFilters}>
@@ -537,7 +537,7 @@ function InteractiveExamples() {
         {/* Results Display */}
         <div className="space-y-3">
           {filteredAndSortedMovies.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
               <div className="text-4xl mb-4">🎬</div>
               <p className="text-lg">No movies found</p>
               <p className="text-sm">Try adjusting your search or filters</p>
@@ -549,7 +549,7 @@ function InteractiveExamples() {
                 className={clsx(
                   'p-4 border rounded-lg transition-all duration-200 cursor-move',
                   'hover:shadow-md hover:border-gray-300',
-                  selectedMovieId === movie.id ? 'ring-2 ring-blue-500 bg-blue-50' : 'bg-white',
+                  selectedMovieId === movie.id ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'bg-white dark:bg-gray-800',
                   draggedItem === movie.id ? 'opacity-50 scale-95' : 'opacity-100',
                   hoveredItem === movie.id && draggedItem && draggedItem !== movie.id ? 'border-dashed border-blue-400' : ''
                 )}
@@ -566,16 +566,16 @@ function InteractiveExamples() {
                 <div className="flex items-center justify-between">
                   {/* Movie Info */}
                   <div className="flex items-center space-x-4">
-                    <div className="flex items-center justify-center w-8 h-8 bg-gray-200 rounded text-sm font-bold">
+                    <div className="flex items-center justify-center w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded text-sm font-bold text-gray-700 dark:text-gray-300">
                       {index + 1}
                     </div>
                     
                     <div>
-                      <h3 className="font-semibold text-gray-900">
+                      <h3 className="font-semibold text-gray-900 dark:text-white">
                         {movie.title}
-                        <span className="ml-2 text-sm text-gray-500">({movie.year})</span>
+                        <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">({movie.year})</span>
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
                         {movie.genre} • ⭐ {movie.rating}/10
                       </p>
                     </div>
@@ -594,8 +594,8 @@ function InteractiveExamples() {
                           }}
                           className={clsx(
                             'text-sm transition-colors',
-                            star * 2 <= movie.rating ? 'text-yellow-400' : 'text-gray-300',
-                            'hover:text-yellow-300 hover:scale-110'
+                            star * 2 <= movie.rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600',
+                            'hover:text-yellow-300 dark:hover:text-yellow-400 hover:scale-110'
                           )}
                           aria-label={`Rate ${star} stars`}
                         >
@@ -621,8 +621,8 @@ function InteractiveExamples() {
                 
                 {/* Expanded Details */}
                 {selectedMovieId === movie.id && (
-                  <div className="mt-4 pt-4 border-t border-gray-200 animate-fade-in">
-                    <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-fade-in">
+                    <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-700 dark:text-gray-300">
                       <div>
                         <strong>Rating:</strong> {movie.rating}/10
                       </div>
@@ -653,7 +653,7 @@ function InteractiveExamples() {
       {/* Add New Movie Form */}
       <section className="card">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">2. Dynamic Form Interactions</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">2. Dynamic Form Interactions</h2>
           <Button 
             size="small" 
             variant="ghost" 
@@ -663,7 +663,7 @@ function InteractiveExamples() {
           </Button>
         </div>
         
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
           This form demonstrates controlled components, validation, and dynamic UI updates.
           Watch how the form reacts to your input and provides real-time feedback.
         </p>

@@ -208,8 +208,8 @@ function Navigation({
             'bg-blue-600 text-white shadow-md',
             'hover:bg-blue-700'
           ] : [
-            'text-gray-700 hover:bg-gray-100',
-            'hover:text-gray-900'
+            'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+            'hover:text-gray-900 dark:hover:text-white'
           ],
           
           // Mobile specific
@@ -228,7 +228,7 @@ function Navigation({
           <div className="font-medium">{item.title}</div>
           <div className={clsx(
             'text-xs mt-1',
-            isActive ? 'text-blue-200' : 'text-gray-500 group-hover:text-gray-600'
+            isActive ? 'text-blue-200' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'
           )}>
             {item.description}
           </div>
@@ -237,7 +237,7 @@ function Navigation({
         {/* Keyboard Shortcut Badge */}
         <div className={clsx(
           'hidden md:flex items-center justify-center w-6 h-6 rounded text-xs font-mono',
-          isActive ? 'bg-blue-500 text-blue-100' : 'bg-gray-200 text-gray-600'
+          isActive ? 'bg-blue-500 text-blue-100' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
         )}>
           {item.shortcut}
         </div>
@@ -254,7 +254,7 @@ function Navigation({
    * COMPONENT RENDER
    */
   return (
-    <nav className={clsx('bg-white border-b border-gray-200', className)}>
+    <nav className={clsx('bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700', className)}>
       {/* Desktop Navigation */}
       <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -274,10 +274,10 @@ function Navigation({
               return currentItem ? (
                 <>
                   <span className="text-xl">{currentItem.emoji}</span>
-                  <span className="font-medium text-gray-900">{currentItem.title}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{currentItem.title}</span>
                 </>
               ) : (
-                <span className="font-medium text-gray-900">Educational Movie App</span>
+                <span className="font-medium text-gray-900 dark:text-white">Educational Movie App</span>
               );
             })()}
           </div>
@@ -302,14 +302,14 @@ function Navigation({
         
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="border-t border-gray-200 bg-gray-50 animate-fade-in">
+          <div className="border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 animate-fade-in">
             <div className="px-4 py-3 space-y-2">
               {NAVIGATION_ITEMS.map(item => renderNavigationItem(item, true))}
             </div>
             
             {/* Mobile Navigation Footer */}
-            <div className="px-4 py-3 border-t border-gray-200 text-center">
-              <p className="text-xs text-gray-500">
+            <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-700 text-center">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Use number keys (1-6) for quick navigation
               </p>
             </div>
@@ -318,7 +318,7 @@ function Navigation({
       </div>
       
       {/* Navigation Progress Indicator */}
-      <div className="bg-gray-100 h-1">
+      <div className="bg-gray-100 dark:bg-gray-700 h-1">
         <div
           className="bg-blue-600 h-1 transition-all duration-300 ease-out"
           style={{
@@ -329,14 +329,14 @@ function Navigation({
       
       {/* Navigation History (Development Only) */}
       {import.meta.env.DEV && navigationHistory.length > 0 && (
-        <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2">
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border-b border-yellow-200 dark:border-yellow-700 px-4 py-2">
           <details className="text-xs">
-            <summary className="cursor-pointer text-yellow-800 font-medium">
+            <summary className="cursor-pointer text-yellow-800 dark:text-yellow-200 font-medium">
               Navigation History ({navigationHistory.length} entries)
             </summary>
             <div className="mt-2 space-y-1 max-h-20 overflow-y-auto">
               {navigationHistory.slice(-10).map((entry, index) => (
-                <div key={index} className="text-yellow-700">
+                <div key={index} className="text-yellow-700 dark:text-yellow-300">
                   {entry.from} → {entry.to} at {new Date(entry.timestamp).toLocaleTimeString()}
                 </div>
               ))}

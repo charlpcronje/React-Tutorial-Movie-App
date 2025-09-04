@@ -22,6 +22,9 @@
 // React imports for main app functionality
 import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 
+// Utility for conditional class names
+import clsx from 'clsx';
+
 // Our foundational components
 import Button from './components/ui/Button.jsx';
 import Navigation from './components/layout/Navigation.jsx';
@@ -40,8 +43,15 @@ import InteractiveExamples from './components/features/InteractiveExamples.jsx';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import useToggle from './hooks/useToggle.js';
 
-// Context provider for global state management
+// Context providers for global state management
 import AppProvider from './contexts/AppContext.jsx';
+import { ThemeProvider } from './contexts/ThemeContext.jsx';
+
+// Theme toggle component
+import ThemeToggle from './components/ui/ThemeToggle.jsx';
+
+// Documentation sidebar system
+import DocumentationSidebar from './components/documentation/DocumentationSidebar.jsx';
 
 // Lazy-loaded components for performance demonstration
 const MovieCard = lazy(() => import('./components/features/MovieCard.jsx'));
@@ -140,6 +150,10 @@ function App() {
   // UI state for various features
   const [showPerformancePanel, togglePerformancePanel] = useToggle(false);
   const [showHelp, toggleHelp] = useToggle(false);
+  const [showDocumentation, setShowDocumentation] = useState(false);
+  const toggleDocumentation = useCallback(() => {
+    setShowDocumentation(prev => !prev);
+  }, []);
   
   /**
    * PERFORMANCE TRACKING
@@ -154,6 +168,29 @@ function App() {
       navigationCount: prev.navigationCount,
     }));
   });
+  
+  /**
+   * KEYBOARD SHORTCUTS
+   * 
+   * Global keyboard shortcuts for better UX
+   */
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Only handle when not typing in inputs
+      if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+        return;
+      }
+      
+      // Cmd+? or F1 for documentation
+      if ((event.metaKey && event.key === '/') || event.key === 'F1') {
+        event.preventDefault();
+        toggleDocumentation();
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
   
   /**
    * NAVIGATION HANDLERS
@@ -261,13 +298,12 @@ function App() {
    */
   return (
     <div className={clsx(
-      'min-h-screen bg-gray-50',
-      appSettings.darkMode && 'dark bg-gray-900',
+      'min-h-screen bg-gray-50 dark:bg-gray-900',
       !appSettings.animations && 'transition-none'
     )}>
       
       {/* Global App Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             
@@ -277,10 +313,10 @@ function App() {
                 <span className="text-white font-bold text-xl">🎬</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                   Educational Movie App
                 </h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   Learn React through practical examples
                 </p>
               </div>
@@ -299,6 +335,16 @@ function App() {
                 📊
               </Button>
               
+              {/* Documentation Toggle */}
+              <Button
+                size="small"
+                variant="ghost"
+                onClick={() => toggleDocumentation()}
+                title="Open documentation (Cmd+?)"
+              >
+                📖
+              </Button>
+              
               {/* Help Toggle */}
               <Button
                 size="small" 
@@ -308,6 +354,9 @@ function App() {
               >
                 ❓
               </Button>
+              
+              {/* Theme Toggle */}
+              <ThemeToggle size="small" />
               
               {/* Settings Menu */}
               <div className="relative">
@@ -328,27 +377,27 @@ function App() {
       
       {/* Performance Panel (Developer Feature) */}
       {showPerformancePanel && (
-        <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-3">
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border-b border-yellow-200 dark:border-yellow-700 px-4 py-3">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between">
               <div className="grid grid-cols-4 gap-4 text-sm">
                 <div className="text-center">
-                  <div className="font-bold text-yellow-700">{performanceMetrics.renderCount}</div>
-                  <div className="text-yellow-600">Renders</div>
+                  <div className="font-bold text-yellow-700 dark:text-yellow-200">{performanceMetrics.renderCount}</div>
+                  <div className="text-yellow-600 dark:text-yellow-300">Renders</div>
                 </div>
                 <div className="text-center">
-                  <div className="font-bold text-yellow-700">{performanceMetrics.navigationCount}</div>
-                  <div className="text-yellow-600">Navigation</div>
+                  <div className="font-bold text-yellow-700 dark:text-yellow-200">{performanceMetrics.navigationCount}</div>
+                  <div className="text-yellow-600 dark:text-yellow-300">Navigation</div>
                 </div>
                 <div className="text-center">
-                  <div className="font-bold text-yellow-700">{completedSections.length}</div>
-                  <div className="text-yellow-600">Completed</div>
+                  <div className="font-bold text-yellow-700 dark:text-yellow-200">{completedSections.length}</div>
+                  <div className="text-yellow-600 dark:text-yellow-300">Completed</div>
                 </div>
                 <div className="text-center">
-                  <div className="font-bold text-yellow-700">
+                  <div className="font-bold text-yellow-700 dark:text-yellow-200">
                     {Math.round((completedSections.length / 6) * 100)}%
                   </div>
-                  <div className="text-yellow-600">Progress</div>
+                  <div className="text-yellow-600 dark:text-yellow-300">Progress</div>
                 </div>
               </div>
               
@@ -366,18 +415,19 @@ function App() {
       
       {/* Help Panel */}
       {showHelp && (
-        <div className="bg-blue-50 border-b border-blue-200 px-4 py-3">
+        <div className="bg-blue-50 dark:bg-blue-900/20 border-b border-blue-200 dark:border-blue-700 px-4 py-3">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <h3 className="font-medium text-blue-900 mb-2">Keyboard Shortcuts</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-blue-800">
-                  <div><kbd className="bg-blue-100 px-2 py-1 rounded">1-6</kbd> Navigate sections</div>
-                  <div><kbd className="bg-blue-100 px-2 py-1 rounded">←→</kbd> Previous/Next</div>
-                  <div><kbd className="bg-blue-100 px-2 py-1 rounded">Esc</kbd> Clear states</div>
-                  <div><kbd className="bg-blue-100 px-2 py-1 rounded">Cmd+K</kbd> Quick search</div>
-                  <div><kbd className="bg-blue-100 px-2 py-1 rounded">Cmd+R</kbd> Reset</div>
-                  <div><kbd className="bg-blue-100 px-2 py-1 rounded">Tab</kbd> Navigate</div>
+                <h3 className="font-medium text-blue-900 dark:text-blue-200 mb-2">Keyboard Shortcuts</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-blue-800 dark:text-blue-300">
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">1-6</kbd> Navigate sections</div>
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">←→</kbd> Previous/Next</div>
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">Esc</kbd> Clear states</div>
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">Cmd+K</kbd> Quick search</div>
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">Cmd+R</kbd> Reset</div>
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">Tab</kbd> Navigate</div>
+                  <div><kbd className="bg-blue-100 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded">Cmd+/</kbd> Documentation</div>
                 </div>
               </div>
               <Button size="small" variant="ghost" onClick={() => toggleHelp()}>
@@ -404,19 +454,19 @@ function App() {
       </main>
       
       {/* Global Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
+      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           
           {/* Learning Progress */}
           <div className="text-center mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Learning Progress</h3>
-            <div className="max-w-md mx-auto bg-gray-200 rounded-full h-3">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Learning Progress</h3>
+            <div className="max-w-md mx-auto bg-gray-200 dark:bg-gray-700 rounded-full h-3">
               <div
                 className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500"
                 style={{ width: `${(completedSections.length / 6) * 100}%` }}
               />
             </div>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
               {completedSections.length} of 6 sections completed
             </p>
           </div>
@@ -445,17 +495,17 @@ function App() {
           </div>
           
           {/* Footer Info */}
-          <div className="text-center text-gray-600">
+          <div className="text-center text-gray-600 dark:text-gray-300">
             <p className="mb-2">
               Educational Movie App - Built with React, Vite, Tailwind CSS, and Hono
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Every component demonstrates React concepts through practical, commented examples
             </p>
             
             {/* Development Info */}
             {import.meta.env.DEV && (
-              <div className="mt-4 text-xs text-gray-400 space-y-1">
+              <div className="mt-4 text-xs text-gray-400 dark:text-gray-500 space-y-1">
                 <p>Development Mode - Extended logging and debugging enabled</p>
                 <p>Frontend: http://localhost:5173 | Backend: http://localhost:3001</p>
                 <p>Check console for detailed component lifecycle logs</p>
@@ -464,6 +514,13 @@ function App() {
           </div>
         </div>
       </footer>
+      
+      {/* Documentation Sidebar */}
+      <DocumentationSidebar
+        isOpen={showDocumentation}
+        onClose={() => toggleDocumentation()}
+        initialCategory={currentSection}
+      />
     </div>
   );
 }

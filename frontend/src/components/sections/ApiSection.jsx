@@ -26,17 +26,17 @@ function ApiSection() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           API Integration Patterns
         </h1>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-gray-600 dark:text-gray-300">
           Learn to fetch and manage data from APIs with proper loading states and error handling
         </p>
       </header>
       
       <section className="card">
-        <h2 className="text-xl font-semibold mb-4">API Service Demo</h2>
-        <p className="text-gray-600 mb-6">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">API Service Demo</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
           Our movie API service handles all external API communication with proper
           error handling, caching, and state management.
         </p>
@@ -52,14 +52,14 @@ function ApiSection() {
           </Button>
           
           {apiStatus === 'success' && (
-            <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded">
-              <p className="text-green-800">✅ API test successful!</p>
+            <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded">
+              <p className="text-green-800 dark:text-green-200">✅ API test successful!</p>
             </div>
           )}
           
           {apiStatus === 'error' && (
-            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded">
-              <p className="text-red-800">❌ API test failed</p>
+            <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded">
+              <p className="text-red-800 dark:text-red-200">❌ API test failed</p>
               <Button size="small" variant="ghost" onClick={testApiCall} className="mt-2">
                 Try Again
               </Button>

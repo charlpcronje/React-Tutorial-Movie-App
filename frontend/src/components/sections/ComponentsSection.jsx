@@ -177,10 +177,10 @@ function ComponentsSection({ movies = [] }) {
       
       {/* Section Header */}
       <header className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           React Components Deep Dive
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Learn component architecture, props, state, and composition through interactive examples.
           Every pattern you see here is used in production React applications.
         </p>
@@ -190,10 +190,10 @@ function ComponentsSection({ movies = [] }) {
       <section className="card">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-900">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
               Button Component Showcase
             </h2>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-600 dark:text-gray-300 mt-2">
               Explore our Button component's variants, sizes, and states.
               Notice how props control every aspect of the component's appearance and behavior.
             </p>
@@ -209,11 +209,11 @@ function ComponentsSection({ movies = [] }) {
           
           {/* Configuration Panel */}
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900">Interactive Configuration</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Interactive Configuration</h3>
             
             {/* Variant Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                 Button Variant (changes color and style)
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -232,7 +232,7 @@ function ComponentsSection({ movies = [] }) {
             
             {/* Size Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                 Button Size (changes padding and text size)
               </label>
               <div className="flex space-x-2">
@@ -251,7 +251,7 @@ function ComponentsSection({ movies = [] }) {
             
             {/* State Controls */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                 Button States (affects interaction and appearance)
               </label>
               <div className="space-y-2">
@@ -260,9 +260,9 @@ function ComponentsSection({ movies = [] }) {
                     type="checkbox"
                     checked={isButtonDisabled}
                     onChange={(e) => setIsButtonDisabled(e.target.checked)}
-                    className="rounded border-gray-300 text-blue-600"
+                    className="rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:bg-gray-700"
                   />
-                  <span className="text-sm">Disabled state</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Disabled state</span>
                 </label>
                 
                 <div>
@@ -279,9 +279,9 @@ function ComponentsSection({ movies = [] }) {
             </div>
             
             {/* Current Configuration Display */}
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <h4 className="font-medium text-gray-900 mb-2">Current Configuration:</h4>
-              <pre className="text-sm text-gray-700 font-mono">
+            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h4 className="font-medium text-gray-900 dark:text-white mb-2">Current Configuration:</h4>
+              <pre className="text-sm text-gray-700 dark:text-gray-300 font-mono">
 {`<Button
   variant="${currentButtonConfig.variant}"
   size="${currentButtonConfig.size}"${isButtonLoading ? '\n  loading={true}' : ''}${isButtonDisabled ? '\n  disabled={true}' : ''}
@@ -295,10 +295,10 @@ function ComponentsSection({ movies = [] }) {
           
           {/* Live Preview */}
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-900">Live Preview</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Live Preview</h3>
             
             {/* Main Button Demo */}
-            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+            <div className="bg-white dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
               <Button
                 variant={buttonVariant}
                 size={buttonSize}
@@ -309,14 +309,14 @@ function ComponentsSection({ movies = [] }) {
                 {currentButtonConfig.text}
               </Button>
               
-              <p className="text-xs text-gray-500 mt-4">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
                 ☝️ Click the button to see it in action
               </p>
             </div>
             
             {/* Size Comparison */}
             <div>
-              <h4 className="font-medium text-gray-900 mb-3">Size Comparison</h4>
+              <h4 className="font-medium text-gray-900 dark:text-white mb-3">Size Comparison</h4>
               <div className="flex items-center justify-center space-x-4">
                 <Button size="small" variant={buttonVariant}>Small</Button>
                 <Button size="medium" variant={buttonVariant}>Medium</Button>
@@ -326,7 +326,7 @@ function ComponentsSection({ movies = [] }) {
             
             {/* Variant Gallery */}
             <div>
-              <h4 className="font-medium text-gray-900 mb-3">Variant Gallery</h4>
+              <h4 className="font-medium text-gray-900 dark:text-white mb-3">Variant Gallery</h4>
               <div className="grid grid-cols-2 gap-2">
                 <Button variant="primary" size={buttonSize}>Primary</Button>
                 <Button variant="secondary" size={buttonSize}>Secondary</Button>
@@ -337,7 +337,7 @@ function ComponentsSection({ movies = [] }) {
             
             {/* State Examples */}
             <div>
-              <h4 className="font-medium text-gray-900 mb-3">State Examples</h4>
+              <h4 className="font-medium text-gray-900 dark:text-white mb-3">State Examples</h4>
               <div className="space-y-2">
                 <Button variant={buttonVariant} size={buttonSize} disabled>
                   Disabled Button
@@ -390,23 +390,23 @@ function ComponentsSection({ movies = [] }) {
       {/* MovieCard Component Showcase */}
       <section className="card">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
             MovieCard Component Showcase
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             Our MovieCard component demonstrates complex component composition,
             multiple interaction patterns, and real-world data handling.
           </p>
         </div>
         
         {/* MovieCard Configuration */}
-        <div className="mb-8 p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-medium text-gray-900 mb-4">Component Configuration</h3>
+        <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <h3 className="font-medium text-gray-900 dark:text-white mb-4">Component Configuration</h3>
           
           <div className="grid md:grid-cols-3 gap-4">
             {/* Card Size */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Card Size
               </label>
               <div className="flex space-x-1">
@@ -425,7 +425,7 @@ function ComponentsSection({ movies = [] }) {
             
             {/* Feature Toggles */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Features
               </label>
               <div className="space-y-1">
@@ -434,9 +434,9 @@ function ComponentsSection({ movies = [] }) {
                     type="checkbox"
                     checked={showCardDetails}
                     onChange={(e) => setShowCardDetails(e.target.checked)}
-                    className="rounded border-gray-300 text-blue-600"
+                    className="rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:bg-gray-700"
                   />
-                  <span className="text-sm">Show details</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Show details</span>
                 </label>
                 
                 <label className="flex items-center space-x-2">
@@ -444,20 +444,20 @@ function ComponentsSection({ movies = [] }) {
                     type="checkbox"
                     checked={enableCardAnimations}
                     onChange={(e) => setEnableCardAnimations(e.target.checked)}
-                    className="rounded border-gray-300 text-blue-600"
+                    className="rounded border-gray-300 dark:border-gray-600 text-blue-600 dark:bg-gray-700"
                   />
-                  <span className="text-sm">Enable animations</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Enable animations</span>
                 </label>
               </div>
             </div>
             
             {/* Statistics Display */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Demo Statistics
               </label>
               {movieStats && (
-                <div className="text-sm space-y-1">
+                <div className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
                   <div>Total movies: {movieStats.total}</div>
                   <div>Favorites: {movieStats.favorites}</div>
                   <div>Rated: {movieStats.rated}</div>
@@ -472,15 +472,15 @@ function ComponentsSection({ movies = [] }) {
         
         {/* MovieCard Grid Demonstration */}
         <div>
-          <h3 className="font-medium text-gray-900 mb-4">
+          <h3 className="font-medium text-gray-900 dark:text-white mb-4">
             Interactive Movie Grid
-            <span className="ml-2 text-sm font-normal text-gray-500">
+            <span className="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">
               (Click movies to interact, try favoriting and rating)
             </span>
           </h3>
           
           {movies.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
               <div className="text-4xl mb-4">🎬</div>
               <p>No movies available for demonstration</p>
               <p className="text-sm mt-2">Check the sample data in App.jsx</p>
@@ -490,7 +490,7 @@ function ComponentsSection({ movies = [] }) {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="animate-pulse">
-                    <div className="bg-gray-200 rounded-lg h-80"></div>
+                    <div className="bg-gray-200 dark:bg-gray-700 rounded-lg h-80"></div>
                   </div>
                 ))}
               </div>
@@ -529,7 +529,7 @@ function ComponentsSection({ movies = [] }) {
           
           {/* Recent Interactions Display */}
           <div className="bg-white p-3 rounded border">
-            <h5 className="text-sm font-medium text-gray-900 mb-2">Recent Interactions:</h5>
+            <h5 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Recent Interactions:</h5>
             {favoriteMovies.length === 0 && Object.keys(movieRatings).length === 0 ? (
               <p className="text-sm text-gray-500">
                 No interactions yet. Try clicking the heart icon or rating a movie above.
@@ -559,10 +559,10 @@ function ComponentsSection({ movies = [] }) {
       
       {/* Component Composition Examples */}
       <section className="card">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
           Component Composition Patterns
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
           Learn how to build complex UIs by composing simple components together.
           This is the heart of React development - building large applications from small, focused pieces.
         </p>
@@ -572,7 +572,7 @@ function ComponentsSection({ movies = [] }) {
           
           {/* Simple Composition */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Simple Composition</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Simple Composition</h3>
             
             {/* Alert Component (composed of multiple elements) */}
             <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4">
@@ -614,7 +614,7 @@ function ComponentsSection({ movies = [] }) {
           
           {/* Complex Composition */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Complex Composition</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Complex Composition</h3>
             
             {/* Feature Card with Multiple Components */}
             <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -660,10 +660,10 @@ function ComponentsSection({ movies = [] }) {
       
       {/* Props and State Demonstration */}
       <section className="card">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
           Props vs State Demonstration
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
           Understanding the difference between props and state is crucial for React development.
           Props flow down from parent to child, while state is managed locally within components.
         </p>
@@ -704,7 +704,7 @@ function ComponentsSection({ movies = [] }) {
                 <div className="md:col-span-2">
                   <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Overview</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Overview</h3>
                       <p className="text-gray-600 text-sm leading-relaxed">
                         {selectedMovie.overview}
                       </p>
@@ -767,7 +767,7 @@ function PropsStateDemo() {
       
       {/* Parent Component Demo */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           Parent Component (manages state)
         </h3>
         
@@ -809,7 +809,7 @@ function PropsStateDemo() {
       
       {/* Child Component Demo */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           Child Component (receives props)
         </h3>
         
@@ -832,7 +832,7 @@ function ChildComponentDemo({ message, counter, onCounterChange }) {
   
   return (
     <div className="bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-300">
-      <h4 className="font-medium text-gray-900 mb-3">Child Component View</h4>
+      <h4 className="font-medium text-gray-900 dark:text-white mb-3">Child Component View</h4>
       
       <div className="space-y-3 text-sm">
         {/* Props from parent */}

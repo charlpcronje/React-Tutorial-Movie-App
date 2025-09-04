@@ -28,8 +28,8 @@ function MovieCard({
   if (!movie || typeof movie !== 'object') {
     console.error('MovieCard: movie prop is required and must be an object');
     return (
-      <div className="card bg-red-50 border-red-200">
-        <p className="text-red-600">Error: Invalid movie data</p>
+      <div className="card bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700">
+        <p className="text-red-600 dark:text-red-300">Error: Invalid movie data</p>
       </div>
     );
   }
@@ -195,8 +195,8 @@ function MovieCard({
           className={clsx(
             'text-lg transition-colors duration-150',
             readonly ? 'cursor-default' : 'cursor-pointer hover:scale-110',
-            isFilled ? 'text-yellow-400' : 'text-gray-300',
-            !readonly && 'hover:text-yellow-300'
+            isFilled ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600',
+            !readonly && 'hover:text-yellow-300 dark:hover:text-yellow-400'
           )}
           onClick={readonly ? undefined : (e) => onRatingChange(starValue, e)}
           disabled={readonly}
@@ -268,7 +268,7 @@ function MovieCard({
       {...rest}
     >
       {/* Movie Poster Section */}
-      <div className="relative aspect-w-2 aspect-h-3 bg-gray-200">
+      <div className="relative aspect-w-2 aspect-h-3 bg-gray-200 dark:bg-gray-700">
         {/* Main poster image */}
         {imageUrl ? (
           <img
@@ -283,8 +283,8 @@ function MovieCard({
             loading={lazyLoad ? 'lazy' : 'eager'}
           />
         ) : (
-          <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-            <span className="text-gray-500 text-4xl">🎬</span>
+          <div className="w-full h-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
+            <span className="text-gray-500 dark:text-gray-400 text-4xl">🎬</span>
           </div>
         )}
         
@@ -302,10 +302,10 @@ function MovieCard({
               'absolute top-2 right-2 w-8 h-8 rounded-full',
               'flex items-center justify-center',
               'transition-all duration-200',
-              'bg-white/80 backdrop-blur-sm',
-              'hover:bg-white hover:scale-110',
+              'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm',
+              'hover:bg-white dark:hover:bg-gray-700 hover:scale-110',
               'focus:outline-none focus:ring-2 focus:ring-red-500',
-              isFavorite ? 'text-red-500' : 'text-gray-400',
+              isFavorite ? 'text-red-500' : 'text-gray-400 dark:text-gray-300',
             )}
             onClick={handleFavoriteClick}
             aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
@@ -355,7 +355,7 @@ function MovieCard({
         {/* Title and Year */}
         <div className="mb-2">
           <h3 className={clsx(
-            'font-semibold text-gray-900 leading-tight',
+            'font-semibold text-gray-900 dark:text-white leading-tight',
             size === 'small' ? 'text-sm' : 'text-base',
             'line-clamp-2'
           )}>
@@ -363,7 +363,7 @@ function MovieCard({
           </h3>
           
           {releaseYear && (
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {releaseYear}
             </p>
           )}
@@ -374,7 +374,7 @@ function MovieCard({
           <p 
             id={`movie-${id}-description`}
             className={clsx(
-              'text-sm text-gray-600 mb-3',
+              'text-sm text-gray-600 dark:text-gray-300 mb-3',
               showDetails ? 'line-clamp-4' : 'line-clamp-2'
             )}
           >

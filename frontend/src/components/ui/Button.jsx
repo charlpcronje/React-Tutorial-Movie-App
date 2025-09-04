@@ -129,13 +129,13 @@ function Button({
     
     // Secondary: Less important actions (Cancel, Back)
     secondary: [
-      'bg-white',               // White background
-      'text-gray-700',          // Dark gray text
-      'border-gray-300',        // Light gray border
-      'hover:bg-gray-50',       // Light gray background on hover
-      'hover:border-gray-400',  // Darker border on hover
+      'bg-white dark:bg-gray-700',              // White background / dark gray in dark mode
+      'text-gray-700 dark:text-gray-100',      // Dark gray text / white text in dark mode
+      'border-gray-300 dark:border-gray-600',  // Light gray border / darker gray in dark mode
+      'hover:bg-gray-50 dark:hover:bg-gray-600', // Light gray hover / darker gray in dark mode
+      'hover:border-gray-400 dark:hover:border-gray-500', // Darker border on hover
       'focus:ring-gray-500',    // Gray focus ring
-      'active:bg-gray-100',     // Light gray when pressed
+      'active:bg-gray-100 dark:active:bg-gray-600',     // Light gray when pressed / darker in dark mode
     ].join(' '),
     
     // Danger: Destructive actions (Delete, Remove)
@@ -152,11 +152,12 @@ function Button({
     // Ghost: Minimal styling (subtle actions)
     ghost: [
       'bg-transparent',         // Transparent background
-      'text-gray-700',          // Dark gray text
+      'text-gray-700 dark:text-gray-100',          // Dark gray text / white text in dark mode
       'border-transparent',     // Transparent border
-      'hover:bg-gray-100',      // Light gray background on hover
+      'hover:bg-gray-100 dark:hover:bg-gray-600',      // Light gray background on hover / darker in dark mode
+      'hover:text-gray-900 dark:hover:text-white',     // Darker text on hover / white in dark mode
       'focus:ring-gray-500',    // Gray focus ring
-      'active:bg-gray-200',     // Darker gray when pressed
+      'active:bg-gray-200 dark:active:bg-gray-700',     // Darker gray when pressed / darker in dark mode
     ].join(' '),
   };
   

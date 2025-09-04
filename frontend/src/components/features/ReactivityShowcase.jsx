@@ -482,16 +482,16 @@ function ReactivityShowcase() {
       
       {/* Header Section */}
       <header className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           React Reactivity Showcase
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-300">
           Watch how different parts of the UI react to state changes in real-time
         </p>
         
         {/* Render Information */}
-        <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-          <p className="text-sm text-blue-800">
+        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
             <span className="font-semibold">Render #{renderCountRef.current}</span>
             {renderInterval > 0 && (
               <span className="ml-2">
@@ -499,7 +499,7 @@ function ReactivityShowcase() {
               </span>
             )}
           </p>
-          <p className="text-xs text-blue-600 mt-1">
+          <p className="text-xs text-blue-600 dark:text-blue-300 mt-1">
             Current time: {currentTime.toLocaleTimeString()}
           </p>
         </div>
@@ -507,8 +507,8 @@ function ReactivityShowcase() {
       
       {/* Simple State Reactivity */}
       <section className="card">
-        <h2 className="text-xl font-semibold mb-4">1. Basic State Reactivity</h2>
-        <p className="text-gray-600 mb-4">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">1. Basic State Reactivity</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
           Watch how the UI instantly updates when state changes. The counter value 
           appears in multiple places and all update simultaneously.
         </p>
@@ -516,7 +516,7 @@ function ReactivityShowcase() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Counter Controls */}
           <div>
-            <h3 className="font-medium mb-3">Controls</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white mb-3">Controls</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Button size="small" onClick={decrementSimple}>-</Button>
@@ -529,31 +529,31 @@ function ReactivityShowcase() {
                   type="checkbox"
                   checked={isActive}
                   onChange={(e) => setIsActive(e.target.checked)}
-                  className="rounded border-gray-300"
+                  className="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
                 />
-                <span>Auto-increment every 3 seconds</span>
+                <span className="text-gray-700 dark:text-gray-300">Auto-increment every 3 seconds</span>
               </label>
             </div>
           </div>
           
           {/* Reactive Displays */}
           <div>
-            <h3 className="font-medium mb-3">Reactive Displays</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white mb-3">Reactive Displays</h3>
             <div className="space-y-2">
-              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                <span>Simple Counter:</span>
+              <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                <span className="text-gray-700 dark:text-gray-300">Simple Counter:</span>
                 <span className="font-bold text-blue-600">{simpleCounter}</span>
               </div>
               
-              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                <span>Doubled:</span>
+              <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                <span className="text-gray-700 dark:text-gray-300">Doubled:</span>
                 <span className="font-bold text-green-600">{simpleCounter * 2}</span>
               </div>
               
-              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                <span>Progress:</span>
+              <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                <span className="text-gray-700 dark:text-gray-300">Progress:</span>
                 <div className="flex-1 ml-2">
-                  <div className="bg-gray-200 rounded-full h-2">
+                  <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                     <div 
                       className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                       style={{ width: `${Math.min(100, (simpleCounter / 20) * 100)}%` }}
@@ -562,8 +562,8 @@ function ReactivityShowcase() {
                 </div>
               </div>
               
-              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                <span>Status:</span>
+              <div className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                <span className="text-gray-700 dark:text-gray-300">Status:</span>
                 <Badge 
                   variant={simpleCounter === 0 ? 'default' : simpleCounter < 10 ? 'info' : 'success'}
                 >
@@ -577,8 +577,8 @@ function ReactivityShowcase() {
       
       {/* Complex State with useReducer */}
       <section className="card">
-        <h2 className="text-xl font-semibold mb-4">2. Complex State Reactivity (useReducer)</h2>
-        <p className="text-gray-600 mb-4">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">2. Complex State Reactivity (useReducer)</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
           This demonstrates how useReducer manages complex, related state updates.
           Notice how multiple values change together in a coordinated way.
         </p>
@@ -586,11 +586,11 @@ function ReactivityShowcase() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Complex Counter Controls */}
           <div>
-            <h3 className="font-medium mb-3">Advanced Controls</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white mb-3">Advanced Controls</h3>
             
             {/* Multiplier Selection */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Multiplier (affects increment/decrement amount)
               </label>
               <div className="flex space-x-2">
@@ -634,18 +634,18 @@ function ReactivityShowcase() {
           
           {/* Complex State Displays */}
           <div>
-            <h3 className="font-medium mb-3">State Overview</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white mb-3">State Overview</h3>
             
             {/* Main Counter Display */}
-            <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg mb-4">
+            <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-4 rounded-lg mb-4">
               <div className="text-center">
                 <div className="text-4xl font-bold text-purple-600 mb-2">
                   {counterState.count}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 dark:text-gray-300">
                   Last action: {counterState.lastAction || 'none'}
                 </div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-gray-500 dark:text-gray-400">
                   Total actions: {counterState.actionCount}
                 </div>
               </div>
@@ -654,25 +654,25 @@ function ReactivityShowcase() {
             {/* Computed Statistics */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Even/Odd:</span>
+                <span className="text-gray-700 dark:text-gray-300">Even/Odd:</span>
                 <Badge variant={counterStats.isEven ? 'info' : 'warning'}>
                   {counterStats.isEven ? 'Even' : 'Odd'}
                 </Badge>
               </div>
               
               <div className="flex items-center justify-between text-sm">
-                <span>Squared:</span>
-                <span className="font-mono">{counterStats.squaredValue}</span>
+                <span className="text-gray-700 dark:text-gray-300">Squared:</span>
+                <span className="font-mono text-gray-900 dark:text-gray-100">{counterStats.squaredValue}</span>
               </div>
               
               <div className="flex items-center justify-between text-sm">
-                <span>Binary:</span>
-                <span className="font-mono text-xs">{counterStats.binaryRepresentation}</span>
+                <span className="text-gray-700 dark:text-gray-300">Binary:</span>
+                <span className="font-mono text-xs text-gray-900 dark:text-gray-100">{counterStats.binaryRepresentation}</span>
               </div>
               
               <div className="flex items-center justify-between text-sm">
-                <span>Roman:</span>
-                <span className="font-serif">{counterStats.romanNumeral}</span>
+                <span className="text-gray-700 dark:text-gray-300">Roman:</span>
+                <span className="font-serif text-gray-900 dark:text-gray-100">{counterStats.romanNumeral}</span>
               </div>
             </div>
           </div>
@@ -681,15 +681,15 @@ function ReactivityShowcase() {
         {/* Action History */}
         {counterState.history.length > 0 && (
           <div className="mt-6">
-            <h3 className="font-medium mb-3">Action History (Last 10)</h3>
-            <div className="bg-gray-50 rounded-lg p-3">
-              <div className="space-y-1 text-sm font-mono">
+            <h3 className="font-medium text-gray-900 dark:text-white mb-3">Action History (Last 10)</h3>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+              <div className="space-y-1 text-sm font-mono text-gray-700 dark:text-gray-300">
                 {counterState.history.slice(-10).map((entry, index) => (
                   <div key={index} className="flex justify-between items-center">
                     <span>
                       {entry.action} {entry.value} → {entry.resultingCount}
                     </span>
-                    <span className="text-gray-500 text-xs">
+                    <span className="text-gray-500 dark:text-gray-400 text-xs">
                       {new Date(entry.timestamp).toLocaleTimeString()}
                     </span>
                   </div>
@@ -702,8 +702,8 @@ function ReactivityShowcase() {
       
       {/* Text Input Reactivity */}
       <section className="card">
-        <h2 className="text-xl font-semibold mb-4">3. Input Reactivity & Computed Values</h2>
-        <p className="text-gray-600 mb-4">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">3. Input Reactivity & Computed Values</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
           Type in the input below and watch how multiple computed values 
           update automatically. This demonstrates reactive computed properties.
         </p>
@@ -711,7 +711,7 @@ function ReactivityShowcase() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Input Section */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Type anything to see reactive analysis:
             </label>
             <textarea
@@ -724,7 +724,7 @@ function ReactivityShowcase() {
             
             {/* Character Count with Reactive Color */}
             <div className="mt-2 flex justify-between text-sm">
-              <span>Characters: {textAnalysis.characterCount}</span>
+              <span className="text-gray-700 dark:text-gray-300">Characters: {textAnalysis.characterCount}</span>
               <span className={clsx(
                 textAnalysis.characterCount > 50 ? 'text-red-500' : 
                 textAnalysis.characterCount > 25 ? 'text-yellow-600' : 'text-gray-500'
@@ -737,32 +737,32 @@ function ReactivityShowcase() {
           
           {/* Reactive Analysis Display */}
           <div>
-            <h3 className="font-medium mb-3">Live Text Analysis</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white mb-3">Live Text Analysis</h3>
             <div className="space-y-2 text-sm">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-2 rounded">
-                  <div className="font-medium text-blue-800">Words</div>
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-2 rounded">
+                  <div className="font-medium text-blue-800 dark:text-blue-200">Words</div>
                   <div className="text-xl font-bold text-blue-600">
                     {textAnalysis.wordCount}
                   </div>
                 </div>
                 
-                <div className="bg-green-50 p-2 rounded">
-                  <div className="font-medium text-green-800">Vowels</div>
+                <div className="bg-green-50 dark:bg-green-900/20 p-2 rounded">
+                  <div className="font-medium text-green-800 dark:text-green-200">Vowels</div>
                   <div className="text-xl font-bold text-green-600">
                     {textAnalysis.vowelCount}
                   </div>
                 </div>
                 
-                <div className="bg-yellow-50 p-2 rounded">
-                  <div className="font-medium text-yellow-800">Consonants</div>
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 p-2 rounded">
+                  <div className="font-medium text-yellow-800 dark:text-yellow-200">Consonants</div>
                   <div className="text-xl font-bold text-yellow-600">
                     {textAnalysis.consonantCount}
                   </div>
                 </div>
                 
-                <div className="bg-purple-50 p-2 rounded">
-                  <div className="font-medium text-purple-800">Special</div>
+                <div className="bg-purple-50 dark:bg-purple-900/20 p-2 rounded">
+                  <div className="font-medium text-purple-800 dark:text-purple-200">Special</div>
                   <div className="text-xl font-bold text-purple-600">
                     {textAnalysis.hasSpecialChars ? '✓' : '✗'}
                   </div>
@@ -772,7 +772,7 @@ function ReactivityShowcase() {
               {/* Advanced Analysis */}
               <div className="mt-4 space-y-1">
                 <div className="flex justify-between">
-                  <span>Contains numbers:</span>
+                  <span className="text-gray-700 dark:text-gray-300">Contains numbers:</span>
                   <Badge variant={textAnalysis.hasNumbers ? 'success' : 'default'}>
                     {textAnalysis.hasNumbers ? 'Yes' : 'No'}
                   </Badge>

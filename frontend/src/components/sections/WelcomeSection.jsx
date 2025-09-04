@@ -148,7 +148,7 @@ function WelcomeSection({ onNavigate }) {
   
   // Interactive state for demonstrations
   const [currentObjective, setCurrentObjective] = useState(0);
-  const [showFullDescription, toggleDescription] = useDisclosure(false);
+  const { isDisclosed: showFullDescription, toggle: toggleDescription } = useDisclosure(false);
   const [animationDemo, setAnimationDemo] = useState(false);
   
   // Welcome flow state
@@ -229,7 +229,7 @@ function WelcomeSection({ onNavigate }) {
           'transition-all duration-1000 ease-out',
           welcomeStep >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         )}>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
             Welcome to{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               React Learning
@@ -241,7 +241,7 @@ function WelcomeSection({ onNavigate }) {
           'transition-all duration-1000 ease-out delay-500',
           welcomeStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         )}>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             This comprehensive educational movie application teaches you React through 
             practical, real-world examples. Every component, hook, and pattern you'll 
             learn here is used in production applications.
@@ -271,15 +271,15 @@ function WelcomeSection({ onNavigate }) {
         {/* Get Started Section */}
         {showGetStarted && (
           <div className="animate-fade-in">
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 max-w-md mx-auto">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 max-w-md mx-auto">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                 Let's Get Started!
               </h3>
               
               <div className="space-y-4">
                 {/* Name Input for Personalization */}
                 <div>
-                  <label htmlFor="user-name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="user-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     What should we call you? (Optional)
                   </label>
                   <input
@@ -287,15 +287,15 @@ function WelcomeSection({ onNavigate }) {
                     type="text"
                     value={userName}
                     onChange={handleNameChange}
-                    className="form-input"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter your name..."
                   />
                 </div>
                 
                 {/* Personalized greeting */}
                 {userName && (
-                  <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
-                    <p className="text-blue-800">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 p-3 rounded-lg">
+                    <p className="text-blue-800 dark:text-blue-200">
                       👋 Nice to meet you, <strong>{userName}</strong>! 
                       Ready to master React?
                     </p>
@@ -341,10 +341,10 @@ function WelcomeSection({ onNavigate }) {
       {/* Learning Objectives Overview */}
       <section className="mb-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             What You'll Learn
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Our curriculum covers everything from basic components to advanced patterns
             used in production React applications.
           </p>
@@ -370,12 +370,12 @@ function WelcomeSection({ onNavigate }) {
                 </div>
                 
                 {/* Objective Title */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   {objective.title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
                   {objective.description}
                 </p>
                 
@@ -385,13 +385,13 @@ function WelcomeSection({ onNavigate }) {
                     {objective.skills.slice(0, 2).map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
+                        className="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
                       >
                         {skill}
                       </span>
                     ))}
                     {objective.skills.length > 2 && (
-                      <span className="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                      <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-full">
                         +{objective.skills.length - 2} more
                       </span>
                     )}
@@ -399,20 +399,20 @@ function WelcomeSection({ onNavigate }) {
                 </div>
                 
                 {/* Estimated Time */}
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-gray-500 dark:text-gray-400">
                   ⏱️ {objective.estimatedTime}
                 </div>
               </div>
               
               {/* Expanded Details */}
               {currentObjective === index && (
-                <div className="mt-4 pt-4 border-t border-gray-200 animate-fade-in">
-                  <h4 className="font-medium text-gray-900 mb-2">Skills covered:</h4>
+                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 animate-fade-in">
+                  <h4 className="font-medium text-gray-900 dark:text-white mb-2">Skills covered:</h4>
                   <div className="space-y-1">
                     {objective.skills.map((skill, skillIndex) => (
                       <div key={skillIndex} className="flex items-center space-x-2 text-sm">
                         <span className="text-green-500">✓</span>
-                        <span className="text-gray-700">{skill}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{skill}</span>
                       </div>
                     ))}
                   </div>
@@ -430,7 +430,7 @@ function WelcomeSection({ onNavigate }) {
               onClick={() => setCurrentObjective(index)}
               className={clsx(
                 'w-3 h-3 rounded-full transition-all duration-200',
-                currentObjective === index ? 'bg-blue-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'
+                currentObjective === index ? 'bg-blue-600 scale-125' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
               )}
               aria-label={`View objective ${index + 1}`}
             />
@@ -440,7 +440,7 @@ function WelcomeSection({ onNavigate }) {
       
       {/* Feature Highlights */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">
           Why This Approach Works
         </h2>
         
@@ -451,16 +451,16 @@ function WelcomeSection({ onNavigate }) {
               className={clsx(
                 'text-center p-6 rounded-xl transition-all duration-300',
                 'hover:shadow-lg hover:-translate-y-2',
-                index % 3 === 0 && 'bg-blue-50 border-2 border-blue-200',
-                index % 3 === 1 && 'bg-purple-50 border-2 border-purple-200', 
-                index % 3 === 2 && 'bg-green-50 border-2 border-green-200'
+                index % 3 === 0 && 'bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700',
+                index % 3 === 1 && 'bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-700', 
+                index % 3 === 2 && 'bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700'
               )}
             >
               <div className="text-3xl mb-4">{feature.emoji}</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
                 {feature.description}
               </p>
             </div>
@@ -472,31 +472,31 @@ function WelcomeSection({ onNavigate }) {
       {showFullDescription && (
         <section className="mb-16 animate-fade-in">
           <div className="card">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Complete Course Overview
             </h2>
             
             {/* Course Structure */}
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   🗺️ Learning Path
                 </h3>
                 <div className="space-y-3">
                   {['Components & Props', 'State & Events', 'Effects & Lifecycle', 
                     'Custom Hooks', 'Context & Performance', 'Testing & Deployment'].map((topic, index) => (
                     <div key={index} className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">
+                      <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
-                      <span className="text-gray-700">{topic}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{topic}</span>
                     </div>
                   ))}
                 </div>
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   🛠️ Technologies Used
                 </h3>
                 <div className="space-y-3">
@@ -510,8 +510,8 @@ function WelcomeSection({ onNavigate }) {
                     <div key={index} className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                       <div>
-                        <div className="font-medium text-gray-900">{tech.name}</div>
-                        <div className="text-sm text-gray-600">{tech.description}</div>
+                        <div className="font-medium text-gray-900 dark:text-white">{tech.name}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">{tech.description}</div>
                       </div>
                     </div>
                   ))}
@@ -520,9 +520,9 @@ function WelcomeSection({ onNavigate }) {
             </div>
             
             {/* Prerequisites */}
-            <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <h3 className="font-medium text-yellow-900 mb-2">📚 Prerequisites</h3>
-              <p className="text-yellow-800 text-sm">
+            <div className="mt-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg">
+              <h3 className="font-medium text-yellow-900 dark:text-yellow-200 mb-2">📚 Prerequisites</h3>
+              <p className="text-yellow-800 dark:text-yellow-300 text-sm">
                 Basic JavaScript knowledge (variables, functions, objects, arrays) and 
                 familiarity with HTML/CSS. No prior React experience required!
               </p>
@@ -547,7 +547,6 @@ function WelcomeSection({ onNavigate }) {
               variant="primary"
               size="large"
               onClick={handleStartTutorial}
-              className="bg-white text-blue-600 hover:bg-blue-50"
             >
               🚀 Start Learning Now
             </Button>
@@ -556,7 +555,6 @@ function WelcomeSection({ onNavigate }) {
               variant="secondary"
               size="large"
               onClick={toggleDescription}
-              className="bg-blue-500 border-blue-400 text-white hover:bg-blue-400"
             >
               📖 View Course Details
             </Button>
@@ -579,9 +577,9 @@ function WelcomeSection({ onNavigate }) {
       {/* Animation Demo Overlay */}
       {animationDemo && (
         <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-2xl shadow-2xl animate-bounce">
+          <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl animate-bounce">
             <div className="text-4xl text-center mb-4">🎉</div>
-            <p className="text-lg font-semibold text-gray-900">
+            <p className="text-lg font-semibold text-gray-900 dark:text-white">
               React makes UI animations smooth and delightful!
             </p>
           </div>

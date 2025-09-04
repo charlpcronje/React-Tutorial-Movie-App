@@ -63,7 +63,8 @@ npm run dev:backend # Backend only
 - [**Tailwind CSS Setup & Guide**](./docs/tailwind-setup.md) - Complete Tailwind setup with educational examples
 - [**ShadCN UI Components**](./docs/shadcn.md) - Component library integration
 - [**Responsive Design**](./docs/responsive-design.md) - Mobile-first design principles
-- [**Dark Mode Implementation**](./docs/dark-mode.md) - Theme switching patterns
+- [**Dark Mode Styling Fixes**](./docs/dark-mode-styling-fixes.md) - Visual enhancements for dark theme
+- [**Documentation Sidebar**](./docs/documentation-sidebar-implementation.md) - Interactive in-app documentation system
 
 ### 🔧 Advanced React Patterns & Architecture
 - [**Context API Implementation**](./docs/context-api-guide.md) - Global state management patterns
@@ -92,7 +93,9 @@ npm run dev:backend # Backend only
 - **Favorites** - Save favorite movies for later viewing
 
 ### Technical Features
+- **Interactive Documentation Sidebar** - In-app access to all educational resources
 - **Responsive Design** - Works on all device sizes
+- **Dark Mode Theme System** - Complete light/dark mode support
 - **Loading States** - Skeleton loaders and loading indicators
 - **Error Handling** - Graceful error boundaries and fallbacks
 - **Infinite Scrolling** - Efficient large dataset handling
@@ -105,6 +108,7 @@ npm run dev:backend # Backend only
 - **React 18** - Latest React with concurrent features
 - **Vite** - Fast build tool and development server
 - **Tailwind CSS** - Utility-first CSS framework
+- **react-markdown** - Markdown rendering with syntax highlighting
 - **ShadCN UI** - High-quality component library
 - **React Router** - Client-side routing
 - **Axios** - HTTP client for API calls
