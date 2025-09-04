@@ -230,10 +230,11 @@ function WelcomeSection({ onNavigate }) {
           welcomeStep >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         )}>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            Welcome to{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              React Learning
+              Digital Cabinet
             </span>
+            <br />
+            Welcome to React Learning
           </h1>
         </div>
         
