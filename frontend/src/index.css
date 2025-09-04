@@ -1,0 +1,277 @@
+/*
+ * TAILWIND CSS BASE STYLES
+ * 
+ * This file imports Tailwind CSS and sets up our application's base styles.
+ * Understanding these directives is crucial for working with Tailwind effectively.
+ */
+
+/* 
+ * @tailwind base - Imports Tailwind's base styles
+ * 
+ * The base layer includes Tailwind's opinionated default styles that:
+ * - Reset browser default styles for consistency across browsers
+ * - Apply sensible defaults for HTML elements
+ * - Set up CSS custom properties for colors and other design tokens
+ * 
+ * Think of this as a modern CSS reset that provides a consistent starting point
+ * for all browsers while setting up the foundation for Tailwind's utility classes.
+ */
+@tailwind base;
+
+/* 
+ * @tailwind components - Imports Tailwind's component classes
+ * 
+ * The components layer is where Tailwind registers component classes.
+ * This is also where you can add your own component classes using @layer components.
+ * 
+ * Component classes are more complex styles that you might want to reuse,
+ * like buttons, cards, or form elements that consist of multiple utility classes.
+ */
+@tailwind components;
+
+/* 
+ * @tailwind utilities - Imports Tailwind's utility classes
+ * 
+ * The utilities layer includes all of Tailwind's utility classes like:
+ * - bg-blue-500 (background colors)
+ * - text-xl (typography)
+ * - p-4 (padding)
+ * - flex (display properties)
+ * - And thousands more...
+ * 
+ * These are the classes you'll use most often in your HTML to style elements.
+ */
+@tailwind utilities;
+
+/*
+ * CUSTOM BASE STYLES
+ * 
+ * Here we can add custom styles that should apply globally to our application.
+ * These styles will be included in Tailwind's base layer.
+ */
+@layer base {
+  /*
+   * HTML and Body Setup
+   * 
+   * We set up the HTML and body elements with sensible defaults that work well
+   * with Tailwind's utility classes and provide a good foundation for our app.
+   */
+  html {
+    /* Ensure the page takes up at least the full height of the viewport */
+    @apply h-full;
+    
+    /* Enable smooth scrolling for anchor links and programmatic scrolling */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* Make the body take up at least the full height */
+    @apply h-full;
+    
+    /* Set up the default font family using Tailwind's font-sans class
+     * This applies a carefully chosen system font stack that looks good
+     * on all operating systems */
+    @apply font-sans;
+    
+    /* Set a neutral background color that works for both light and dark modes */
+    @apply bg-gray-50;
+    
+    /* Set the default text color */
+    @apply text-gray-900;
+    
+    /* Ensure smooth font rendering on all browsers */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*
+   * Application Root Element
+   * 
+   * The root element of our React application should also take up the full height
+   * so that our layout components can use height-based styling effectively.
+   */
+  #root {
+    @apply h-full;
+  }
+
+  /*
+   * Custom Focus Styles
+   * 
+   * We define custom focus styles that are more visually appealing and consistent
+   * with our design system than the browser defaults.
+   */
+  *:focus {
+    @apply outline-none ring-2 ring-blue-500 ring-opacity-50;
+  }
+
+  /*
+   * Custom Scrollbar Styles (Webkit browsers only)
+   * 
+   * These styles customize the appearance of scrollbars in Webkit browsers
+   * (Chrome, Safari, Edge) to better match our design system.
+   */
+  *::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/*
+ * CUSTOM COMPONENT STYLES
+ * 
+ * Here we can define reusable component classes that combine multiple
+ * Tailwind utilities into semantic class names.
+ */
+@layer components {
+  /*
+   * Button Base Class
+   * 
+   * This creates a base button class that we can extend with modifiers.
+   * It combines commonly used utility classes into a single semantic class name.
+   */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /*
+   * Primary Button Variant
+   * 
+   * Extends the base button with primary styling (blue theme).
+   */
+  .btn-primary {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+
+  /*
+   * Secondary Button Variant
+   * 
+   * Extends the base button with secondary styling (gray theme).
+   */
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+  }
+
+  /*
+   * Card Component Base
+   * 
+   * A reusable card component class that provides consistent spacing and styling
+   * for content containers throughout our application.
+   */
+  .card {
+    @apply bg-white rounded-lg shadow-md border border-gray-200 p-6;
+  }
+
+  /*
+   * Form Input Base
+   * 
+   * Consistent styling for form inputs throughout the application.
+   */
+  .form-input {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+  }
+}
+
+/*
+ * CUSTOM UTILITY CLASSES
+ * 
+ * Here we can add custom utility classes that aren't provided by Tailwind by default.
+ * These should be simple, single-purpose classes that can be composed with other utilities.
+ */
+@layer utilities {
+  /*
+   * Text Shadow Utilities
+   * 
+   * Tailwind doesn't include text-shadow utilities by default, but they're often
+   * useful for improving text readability over background images.
+   */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .text-shadow {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  /*
+   * Custom Gradient Utilities
+   * 
+   * While Tailwind includes many gradient utilities, these are custom gradients
+   * specifically designed for our movie application's visual theme.
+   */
+  .bg-movie-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .bg-hero-gradient {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+  }
+
+  /*
+   * Animation Utilities
+   * 
+   * Custom animation classes for specific interactions in our movie app.
+   */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/*
+ * EDUCATIONAL NOTES:
+ * 
+ * 1. LAYER SYSTEM:
+ *    Tailwind's @layer directive controls the cascade order of styles:
+ *    - base: Foundational styles (element defaults)
+ *    - components: Reusable component classes
+ *    - utilities: Single-purpose utility classes
+ * 
+ * 2. @apply DIRECTIVE:
+ *    The @apply directive lets you use Tailwind utilities within CSS rules
+ *    This is useful for creating component classes while still using Tailwind's utilities
+ * 
+ * 3. RESPONSIVE DESIGN:
+ *    All Tailwind utilities can be made responsive with prefixes like sm:, md:, lg:, xl:
+ *    Example: "bg-blue-500 md:bg-red-500" - blue on mobile, red on medium screens and up
+ * 
+ * 4. DARK MODE:
+ *    Tailwind includes built-in dark mode support with the "dark:" prefix
+ *    Example: "bg-white dark:bg-gray-900" - white in light mode, dark gray in dark mode
+ * 
+ * 5. CUSTOMIZATION:
+ *    The tailwind.config.js file allows you to customize colors, fonts, spacing, and more
+ *    Any customizations you make there become available as utility classes
+ * 
+ * 6. PURGING/TREE-SHAKING:
+ *    Tailwind only includes the styles you actually use in your final build
+ *    This is why we specify the content paths in tailwind.config.js
+ * 
+ * 7. PERFORMANCE:
+ *    Despite including thousands of utility classes, Tailwind's final CSS bundle is typically
+ *    much smaller than traditional CSS frameworks because unused styles are removed
+ */

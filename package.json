@@ -1,0 +1,34 @@
+{
+  "name": "educational-movie-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:all": "concurrently --names \"frontend,backend\" --prefix-colors \"blue,green\" \"npm run dev\" \"npm run dev:backend\"",
+    "build": "cd frontend && npm run build",
+    "build:backend": "echo 'No build step required for backend'",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "clean": "rm -rf frontend/dist backend/database.db frontend/node_modules backend/node_modules node_modules",
+    "lint": "cd frontend && npm run lint",
+    "test": "echo 'No tests configured yet'",
+    "start": "npm run dev:all"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "description": "Educational React movie application demonstrating all React concepts with comprehensive documentation",
+  "keywords": [
+    "react",
+    "education",
+    "movie-app",
+    "vite",
+    "hono",
+    "sqlite",
+    "tailwind",
+    "shadcn"
+  ],
+  "author": "Educational Project",
+  "license": "MIT"
+}
