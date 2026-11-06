@@ -1,6 +1,12 @@
-# 🎬 Educational Movie App
+# 🎬 Digital Cabinet - Educational Movie App
 
-An educational React application designed to demonstrate and explain all core React concepts through a practical movie browsing and rating application. This project serves as a comprehensive learning resource for developers wanting to understand React best practices, patterns, and concepts.
+> **A comprehensive React learning journey through building a real-world movie application**
+
+Welcome to Digital Cabinet, an educational movie application designed to teach React development through practical, hands-on experience. This project demonstrates modern React patterns, TypeScript integration, and production-grade development practices.
+
+**This repository contains TWO complete versions:**
+- **📁 JavaScript Version** (`/frontend`) - Modern React fundamentals
+- **📁 TypeScript Version** (`/typed_version`) - Production-grade TypeScript implementation
 
 ## 🎯 Project Overview
 
@@ -14,22 +20,28 @@ This movie application is built to showcase:
 
 ## 🚀 Quick Start
 
+### JavaScript Version (Beginner-Friendly)
 ```bash
-# Clone and navigate to the project
-cd movieApp
-
-# Install frontend dependencies
+cd frontend
 npm install
+npm run dev
+```
 
-# Install backend dependencies
+### TypeScript Version (Advanced)
+```bash
+cd typed_version/frontend
+npm install
+npm run dev
+```
+
+### Full-Stack Setup (Both Versions)
+```bash
+# Backend setup
 cd backend
 npm install
+npm run dev
 
-# Start development servers
-npm run dev:all    # Starts both frontend and backend
-# OR separately:
-npm run dev        # Frontend only
-npm run dev:backend # Backend only
+# Then run either frontend version in a separate terminal
 ```
 
 ## 📚 Documentation Index
@@ -71,6 +83,12 @@ npm run dev:backend # Backend only
 - [**Error Boundaries Guide**](./docs/error-boundaries-guide.md) - Comprehensive error handling
 - [**Advanced Patterns Showcase**](./docs/advanced-patterns.md) - HOCs, render props, compound components
 - [**Performance Optimization**](./docs/performance-guide.md) - React performance patterns and monitoring
+
+### 📘 TypeScript Version Documentation
+- [**TypeScript Introduction**](./typed_version/docs/typescript-introduction.md) - Why TypeScript for React
+- [**Basic Types & React Integration**](./typed_version/docs/basic-types.md) - Foundational TypeScript concepts
+- [**Advanced TypeScript Patterns**](./typed_version/docs/advanced-typescript.md) - Generics, utility types, and patterns
+- [**tRPC Integration**](./typed_version/docs/trpc-integration.md) - End-to-end type safety with APIs
 
 ### 🗄️ Backend & Database  
 - [**Hono Backend Setup**](./docs/hono-backend.md) - Fast web framework implementation

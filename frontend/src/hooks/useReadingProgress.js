@@ -40,11 +40,12 @@ const DOCUMENTATION_PAGES = {
   'styling-responsive': { weight: 3, title: 'Responsive Design' },
   'styling-dark-mode-fixes': { weight: 3, title: 'Dark Mode Fixes' },
 
-  // Advanced Patterns (10%)
+  // Advanced Patterns (11%)
   'advanced-context-api': { weight: 3, title: 'Context API Implementation' },
   'advanced-error-boundaries-guide': { weight: 2, title: 'Error Boundaries Guide' },
   'advanced-advanced-patterns': { weight: 3, title: 'Advanced Patterns' },
   'advanced-performance': { weight: 2, title: 'Performance Guide' },
+  'advanced-comments-system': { weight: 1, title: 'Comments System' },
 
   // Backend & Database (3%)
   'backend-hono': { weight: 1, title: 'Hono Backend Setup' },
@@ -54,7 +55,13 @@ const DOCUMENTATION_PAGES = {
   // Testing & QA (2%)
   'testing-testing-guide': { weight: 1, title: 'Complete Testing Guide' },
   'testing-component-testing': { weight: 0.5, title: 'Component Testing' },
-  'testing-hook-testing': { weight: 0.5, title: 'Hook Testing' }
+  'testing-hook-testing': { weight: 0.5, title: 'Hook Testing' },
+
+  // TypeScript Mastery (3%)
+  'typescript-typescript-introduction': { weight: 1, title: 'TypeScript Introduction' },
+  'typescript-basic-types': { weight: 1, title: 'Basic Types & React' },
+  'typescript-advanced-typescript': { weight: 1, title: 'Advanced TypeScript Patterns' },
+  'typescript-trpc-integration': { weight: 0.5, title: 'tRPC Integration' }
 };
 
 const STORAGE_KEY = 'documentation-reading-progress';

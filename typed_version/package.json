@@ -1,0 +1,26 @@
+{
+  "name": "movie-app-typescript-tutorial",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Comprehensive TypeScript React tutorial with advanced type features and RPC communication",
+  "type": "module",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "build:frontend": "cd frontend && npm run build", 
+    "type-check": "cd frontend && tsc --noEmit",
+    "type-check:frontend": "cd frontend && tsc --noEmit",
+    "lint": "cd frontend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "test": "cd frontend && npm run test",
+    "test:frontend": "cd frontend && npm run test",
+    "install-deps": "cd frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "frontend"
+  ]
+}

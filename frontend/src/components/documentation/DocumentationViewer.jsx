@@ -745,7 +745,495 @@ const [state, dispatch] = useReducer(movieReducer, initialState);
 - Memoize context values
 - Use multiple providers when needed
 
-Context is powerful but use it wisely!`
+Context is powerful but use it wisely!`,
+
+    // TypeScript Documentation
+    'typescript-introduction': `# 🚀 TypeScript for Production React Applications
+
+## Why TypeScript?
+
+TypeScript transforms JavaScript into a production-ready language by adding static type checking, enhanced IDE support, and better code maintainability. In this educational movie app, we'll explore how TypeScript prevents bugs, improves developer experience, and enables large-scale application development.
+
+## Key Benefits for React Development
+
+### 1. **Type Safety** 🛡️
+Catch errors at compile-time rather than runtime:
+
+\`\`\`typescript
+// JavaScript - Runtime Error
+function getMovieTitle(movie) {
+  return movie.title.toUpperCase(); // Error if movie is null
+}
+
+// TypeScript - Compile-time Error Prevention
+interface Movie {
+  id: string;
+  title: string;
+  year: number;
+}
+
+function getMovieTitle(movie: Movie | null): string {
+  return movie?.title.toUpperCase() ?? 'Unknown Title';
+}
+\`\`\`
+
+### 2. **Enhanced Developer Experience** 💡
+- **IntelliSense**: Auto-completion for props, methods, and APIs
+- **Refactoring**: Safe renaming across entire codebase
+- **Documentation**: Types serve as inline documentation
+
+### 3. **Scalability** 📈
+- **Interface Contracts**: Clear agreements between components
+- **Maintainability**: Easier to understand and modify large codebases
+- **Team Collaboration**: Self-documenting code reduces onboarding time
+
+## TypeScript in This Project
+
+Our educational movie app demonstrates TypeScript best practices:
+
+- **Strict Type Checking**: Enabled in \`tsconfig.json\` for maximum safety
+- **Generic Components**: Reusable components with flexible typing
+- **API Type Safety**: End-to-end type safety with tRPC
+- **Advanced Patterns**: Utility types, conditional types, and mapped types
+
+## Learning Path
+
+1. **Basic Types**: Start with primitives and object shapes
+2. **React + TypeScript**: Component props, state, and event typing
+3. **Advanced Types**: Generics, utility types, and conditional logic
+4. **API Integration**: Type-safe data fetching with tRPC
+5. **Production Patterns**: Error boundaries, HOCs, and performance optimization
+
+## Real-World Impact
+
+> **Production Tip**: Companies report 15-20% reduction in bugs and 40% faster onboarding for new developers when using TypeScript with React.
+
+Let's build type-safe, maintainable React applications together! 🎯`,
+
+    'basic-types': `# 📝 TypeScript Basic Types & React Integration
+
+## Primitive Types
+
+TypeScript extends JavaScript with static type annotations:
+
+\`\`\`typescript
+// Basic type annotations
+const movieTitle: string = "The Matrix";
+const releaseYear: number = 1999;
+const isWatched: boolean = true;
+const rating: number | null = null; // Union type
+\`\`\`
+
+## Object Types & Interfaces
+
+### Interface Definition
+\`\`\`typescript
+/**
+ * Movie interface - Defines the shape of a movie object
+ * Used throughout the application for type safety
+ */
+interface Movie {
+  readonly id: string;        // readonly prevents modification
+  title: string;
+  year: number;
+  genre: string[];           // Array of strings
+  rating?: number;           // Optional property
+  director: {                // Nested object
+    name: string;
+    birthYear: number;
+  };
+}
+\`\`\`
+
+## React Component Typing
+
+### Functional Component Props
+\`\`\`typescript
+interface MovieCardProps {
+  /** The movie data to display */
+  movie: Movie;
+  /** Callback when user clicks the movie card */
+  onMovieSelect: (movieId: string) => void;
+  /** Optional CSS class name */
+  className?: string;
+}
+
+const MovieCard: React.FC<MovieCardProps> = ({
+  movie,
+  onMovieSelect,
+  className = ""
+}) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    onMovieSelect(movie.id);
+  };
+
+  return (
+    <div 
+      className={\`movie-card \${className}\`}
+      onClick={handleClick}
+    >
+      <h3>{movie.title}</h3>
+      <p>{movie.year}</p>
+    </div>
+  );
+};
+\`\`\`
+
+## State & Event Typing
+
+### useState with TypeScript
+\`\`\`typescript
+// Type inference (TypeScript knows it's string)
+const [searchQuery, setSearchQuery] = useState("");
+
+// Explicit typing for complex types
+const [movies, setMovies] = useState<Movie[]>([]);
+const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+
+// Union types for multiple states
+type LoadingState = 'idle' | 'loading' | 'success' | 'error';
+const [loadingState, setLoadingState] = useState<LoadingState>('idle');
+\`\`\`
+
+These basic types form the foundation of type-safe React development! 🎯`,
+
+    'advanced-typescript': `# 🧠 Advanced TypeScript Patterns for React
+
+## Generics: Building Reusable Components
+
+### Generic Component Example
+\`\`\`typescript
+/**
+ * Generic Data Table Component
+ * T represents the type of data being displayed
+ */
+interface DataTableProps<T> {
+  data: T[];
+  columns: ColumnDefinition<T>[];
+  onRowClick?: (item: T) => void;
+  loading?: boolean;
+}
+
+function DataTable<T extends Record<string, any>>({
+  data,
+  columns,
+  onRowClick,
+  loading = false
+}: DataTableProps<T>) {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <table className="data-table">
+      <thead>
+        <tr>
+          {columns.map(column => (
+            <th key={String(column.key)}>{column.title}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr 
+            key={index} 
+            onClick={() => onRowClick?.(item)}
+          >
+            {columns.map(column => (
+              <td key={String(column.key)}>
+                {String(item[column.key])}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+\`\`\`
+
+## Utility Types for Data Transformation
+
+### Built-in Utility Types
+\`\`\`typescript
+interface Movie {
+  id: string;
+  title: string;
+  year: number;
+  genre: string[];
+}
+
+// Pick specific properties
+type MovieSummary = Pick<Movie, 'id' | 'title' | 'year'>;
+
+// Omit certain properties  
+type MovieFormData = Omit<Movie, 'id'>;
+
+// Make all properties optional
+type PartialMovie = Partial<Movie>;
+\`\`\`
+
+## Conditional Types & Template Literals
+
+### Conditional Types
+\`\`\`typescript
+/**
+ * Conditional type that checks if T has an 'id' property
+ */
+type HasId<T> = T extends { id: any } ? true : false;
+
+type MovieHasId = HasId<Movie>; // true
+\`\`\`
+
+### Template Literal Types
+\`\`\`typescript
+/**
+ * Generate event handler names
+ */
+type EventHandlerName<T extends string> = \`on\${Capitalize<T>}\`;
+
+type MovieEvents = 'select' | 'delete' | 'edit';
+type MovieHandlers = EventHandlerName<MovieEvents>; 
+// "onSelect" | "onDelete" | "onEdit"
+\`\`\`
+
+These advanced patterns enable you to build scalable, maintainable TypeScript applications! 🚀`,
+
+    'trpc-integration': `# 🌐 tRPC Integration: End-to-End Type Safety
+
+## What is tRPC?
+
+tRPC (TypeScript Remote Procedure Call) provides end-to-end type safety from your API to your frontend. Unlike traditional REST APIs, tRPC automatically synchronizes types between client and server, eliminating the need for code generation or manual type definitions.
+
+## Benefits for Movie App
+
+- **🔒 Type Safety**: Compile-time errors for API mismatches
+- **🚀 Developer Experience**: Auto-completion for API calls
+- **📚 Self-Documenting**: Types serve as API documentation
+- **🔄 Real-time Sync**: Server changes automatically reflect on client
+
+## Server Setup (Backend)
+
+### Router Definition
+\`\`\`typescript
+import { z } from 'zod';
+import { createTRPCRouter, publicProcedure } from '../trpc';
+
+const CreateMovieSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  year: z.number().min(1900).max(2030),
+  genre: z.array(z.string()).min(1, "At least one genre required")
+});
+
+export const movieRouter = createTRPCRouter({
+  // Get all movies
+  getAll: publicProcedure
+    .query(async ({ ctx }) => {
+      return await ctx.db.movie.findMany();
+    }),
+
+  // Create new movie
+  create: publicProcedure
+    .input(CreateMovieSchema)
+    .mutation(async ({ input, ctx }) => {
+      return await ctx.db.movie.create({
+        data: input
+      });
+    })
+});
+\`\`\`
+
+## Client Setup (Frontend)
+
+### tRPC Client Configuration
+\`\`\`typescript
+import { createTRPCReact } from '@trpc/react-query';
+import type { AppRouter } from '../../../server/routers/_app';
+
+export const trpc = createTRPCReact<AppRouter>();
+\`\`\`
+
+## Using tRPC in React Components
+
+### Query Hook Usage
+\`\`\`typescript
+export const MovieList: React.FC = () => {
+  // Type-safe query with auto-completion
+  const {
+    data: movies,
+    isLoading,
+    error
+  } = trpc.movie.getAll.useQuery();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  return (
+    <div>
+      {movies?.map(movie => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </div>
+  );
+};
+\`\`\`
+
+### Mutation Hook Usage
+\`\`\`typescript
+export const CreateMovieForm: React.FC = () => {
+  const utils = trpc.useUtils();
+
+  const createMovieMutation = trpc.movie.create.useMutation({
+    onSuccess: () => {
+      // Invalidate and refetch movies list
+      utils.movie.getAll.invalidate();
+    }
+  });
+
+  const handleSubmit = (data: CreateMovieInput) => {
+    createMovieMutation.mutate(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* Form fields */}
+    </form>
+  );
+};
+\`\`\`
+
+tRPC provides the ultimate developer experience with full type safety from database to UI! 🎯`,
+
+    // Comments System Documentation
+    'comments-system': `# 💬 Comments System Implementation
+
+## Overview
+
+The movie commenting system demonstrates advanced React patterns for building interactive, user-generated content features. This implementation showcases real-world patterns used in production applications for handling user comments, replies, and social interactions.
+
+## Key Learning Concepts
+
+### 1. **Complex State Management** 🔄
+Managing multiple related state variables for a cohesive user experience:
+
+\`\`\`jsx
+// Multiple interconnected state variables
+const [allComments, setAllComments] = useLocalStorage('movie_comments', {});
+const [newCommentText, setNewCommentText] = useState('');
+const [editingCommentId, setEditingCommentId] = useState(null);
+const [replyingToId, setReplyingToId] = useState(null);
+const [showReplies, setShowReplies] = useState({});
+\`\`\`
+
+### 2. **Custom Hook Architecture** 🪝
+Extracting complex logic into reusable custom hooks:
+
+\`\`\`jsx
+// useComments hook encapsulates all commenting logic
+const {
+  comments,
+  commentStats,
+  addComment,
+  deleteComment,
+  updateComment,
+  toggleLike,
+  addReply
+} = useComments(movieId);
+\`\`\`
+
+### 3. **Data Persistence** 💾
+Using localStorage for client-side data persistence:
+
+\`\`\`jsx
+// Comments persist across browser sessions
+const [allComments, setAllComments] = useLocalStorage('movie_comments', {});
+\`\`\`
+
+## Component Architecture
+
+### MovieComments Component
+**Purpose**: Main commenting interface for a specific movie
+
+**Features**:
+- Comment creation with character limit validation
+- Comment editing with optimistic updates
+- Nested replies with threaded display
+- Like/dislike functionality
+- Sort options (newest, oldest, popular)
+- Author name persistence
+- Empty state handling
+
+### useComments Custom Hook
+**Purpose**: Encapsulates all commenting business logic
+
+**Benefits**:
+- Reusable across multiple components
+- Centralized state management
+- Clean separation of concerns
+- Testable business logic
+- Performance optimizations built-in
+
+### MovieCard Integration
+**Purpose**: Seamlessly integrate comments into movie cards
+
+**Features**:
+- Toggle comments visibility
+- Comment count display
+- Responsive integration
+- Maintains card layout integrity
+
+## Advanced Patterns Demonstrated
+
+### 1. **Optimistic Updates**
+\`\`\`jsx
+// Immediate UI feedback before persistence
+const handleToggleLike = useCallback((commentId) => {
+  // Update UI immediately
+  setComments(prev => prev.map(comment => 
+    comment.id === commentId 
+      ? { ...comment, likes: comment.userHasLiked ? comment.likes - 1 : comment.likes + 1 }
+      : comment
+  ));
+}, []);
+\`\`\`
+
+### 2. **Immutable State Updates**
+\`\`\`jsx
+// Always create new objects, never mutate existing state
+const updateComment = useCallback((commentId, newText) => {
+  setAllComments(prev => ({
+    ...prev, // Preserve other movies' comments
+    [movieId]: prev[movieId].map(comment => 
+      comment.id === commentId 
+        ? { ...comment, text: newText, isEdited: true } // New object
+        : comment // Unchanged reference
+    )
+  }));
+}, [movieId]);
+\`\`\`
+
+## Performance Considerations
+
+### Memoization Strategy
+- \`useMemo\` for expensive comment calculations
+- \`useCallback\` for stable function references
+- \`React.memo\` for comment list items
+
+### Efficient List Rendering
+\`\`\`jsx
+// Stable keys for React reconciliation
+{comments.map(comment => (
+  <CommentItem 
+    key={comment.id} // Stable, unique key
+    comment={comment}
+    onEdit={handleEdit}
+    onDelete={handleDelete}
+  />
+))}
+\`\`\`
+
+This commenting system showcases complex React patterns used in production applications! 🎯`
   };
 
   // Return specific content if available, otherwise fallback to generic

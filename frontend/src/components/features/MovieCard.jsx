@@ -6,6 +6,7 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import Button from '../ui/Button.jsx';
+import MovieComments from './MovieComments.jsx';
 import useLocalStorage from '../../hooks/useLocalStorage.js';
 import { clsx } from 'clsx';
 
@@ -57,6 +58,8 @@ function MovieCard({
   const [userRating, setUserRating] = useLocalStorage(`rating_${id}`, 0);
   const [isFavorite, setIsFavorite] = useLocalStorage(`favorite_${id}`, false);
   const [isPressed, setIsPressed] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [commentStats, setCommentStats] = useState({ totalComments: 0, totalReplies: 0, totalLikes: 0 });
 
   // Computed values
   const imageUrl = useMemo(() => {
@@ -430,24 +433,47 @@ function MovieCard({
         
         {/* Action Buttons */}
         {interactive && showDetails && (
-          <div className="flex space-x-2 mt-4">
-            <Button 
-              size="small" 
-              variant="primary"
-              onClick={handleCardClick}
-              className="flex-1"
-            >
-              Details
-            </Button>
+          <div className="space-y-3 mt-4">
+            <div className="flex space-x-2">
+              <Button 
+                size="small" 
+                variant="primary"
+                onClick={handleCardClick}
+                className="flex-1"
+              >
+                Details
+              </Button>
+              
+              <Button 
+                size="small" 
+                variant={isFavorite ? "danger" : "secondary"}
+                onClick={handleFavoriteClick}
+                aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+              >
+                {isFavorite ? '💔' : '❤️'}
+              </Button>
+              
+              <Button 
+                size="small" 
+                variant={showComments ? "primary" : "ghost"}
+                onClick={() => setShowComments(!showComments)}
+                aria-label={showComments ? 'Hide comments' : 'Show comments'}
+              >
+                💬 {commentStats.totalComments > 0 && commentStats.totalComments}
+              </Button>
+            </div>
             
-            <Button 
-              size="small" 
-              variant={isFavorite ? "danger" : "secondary"}
-              onClick={handleFavoriteClick}
-              aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-            >
-              {isFavorite ? '💔' : '❤️'}
-            </Button>
+            {/* Comments Section */}
+            {showComments && (
+              <div className="mt-4 border-t border-gray-200 dark:border-gray-600 pt-4">
+                <MovieComments
+                  movieId={id}
+                  movieTitle={title}
+                  onCommentsChange={setCommentStats}
+                  className="border-0 shadow-none"
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

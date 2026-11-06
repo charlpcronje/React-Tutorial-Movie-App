@@ -98,7 +98,8 @@ const DOCUMENTATION_CATEGORIES = [
       { id: 'context-api', title: '🌐 Context API Implementation', file: 'context-api-guide.md' },
       { id: 'error-boundaries-guide', title: '🛡️ Error Boundaries Guide', file: 'error-boundaries-guide.md' },
       { id: 'advanced-patterns', title: '🎭 Advanced Patterns', file: 'advanced-patterns.md' },
-      { id: 'performance', title: '⚡ Performance Guide', file: 'performance-guide.md' }
+      { id: 'performance', title: '⚡ Performance Guide', file: 'performance-guide.md' },
+      { id: 'comments-system', title: '💬 Comments System', file: 'comments-system.md' }
     ]
   },
   {
@@ -127,6 +128,21 @@ const DOCUMENTATION_CATEGORIES = [
       { id: 'testing-guide', title: '🧪 Complete Testing Guide', file: 'testing-guide.md' },
       { id: 'component-testing', title: '🔬 Component Testing', file: 'component-testing.md' },
       { id: 'hook-testing', title: '🪝 Hook Testing', file: 'hook-testing.md' }
+    ]
+  },
+  {
+    id: 'typescript',
+    title: 'TypeScript Mastery',
+    icon: '📘',
+    color: 'cyan',
+    bgColor: 'bg-cyan-50 dark:bg-cyan-900/20',
+    textColor: 'text-cyan-700 dark:text-cyan-300',
+    borderColor: 'border-cyan-200 dark:border-cyan-700',
+    docs: [
+      { id: 'typescript-introduction', title: '🚀 TypeScript Introduction', file: 'typescript-introduction.md' },
+      { id: 'basic-types', title: '📝 Basic Types & React', file: 'basic-types.md' },
+      { id: 'advanced-typescript', title: '🧠 Advanced TypeScript Patterns', file: 'advanced-typescript.md' },
+      { id: 'trpc-integration', title: '🌐 tRPC Integration', file: 'trpc-integration.md' }
     ]
   }
 ];
